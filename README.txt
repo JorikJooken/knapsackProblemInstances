@@ -58,5 +58,5 @@ This repository also contains the file "comboExecutable" - the executable of the
 
 * OPTIMA *
 
-The optimal objective function values for the 3240 problem instances are summarized in the file "optima.csv". In case combo was able to solve the problem instance without running out of time or memory, the optimal objective function value will be reported. Otherwise, we report a sential value "-1".
+The optimal objective function values for the 3240 problem instances are summarized in the file "optima.csv". In case combo was able to solve the problem instance without running out of time or memory, the optimal objective function value will be reported. Otherwise, we report a sentinel value "-1".
 

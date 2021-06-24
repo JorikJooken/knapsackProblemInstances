@@ -9,28 +9,25 @@ int main()
     #define int long long
 
     cerr << "n=" << endl;
-    // n
     int n;
     cin >> n;
     cerr << "capacity=" << endl;
-    // c
     long long cap;
     cin >> cap;
     cerr << "classes=" << endl; // >= 2
-    // g
     int classes;
     cin >> classes;
     classes--;  
     cerr << "fraction=" << endl; // 0<=frac<=1, in practice frac should be quite a lot smaller than 1
-    // f
     double frac;
     cin >> frac;
     cerr << "eps=" << endl;
-    // eps
     double eps;
     cin >> eps;
+    cerr << "small=" << endl;
+    long long small;
+    cin >> small;
 
-    long long small=300;
     std::random_device device;
     std::mt19937 generator(device());
     std::uniform_int_distribution<int> distribution(1,small);

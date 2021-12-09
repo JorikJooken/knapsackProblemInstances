@@ -1,3 +1,25 @@
+This repository contains the data described in the paper: "A New Class of Hard Problem Instances for the 0-1 Knapsack Problem". This paper has been accepted for publication in European Journal of Operational Research. The journal issue number will be added as soon as this information is available. Please cite this paper as:
+
+Jooken, J., Leyman, P., & De Causmaecker, P. (2021). A New Class of Hard Problem Instances for the 0-1 Knapsack
+Problem. European Journal of Operational Research, . URL: https://www.sciencedirect.com/science/
+article/pii/S037722172101016X. doi:https://doi.org/10.1016/j.ejor.2021.12.009.
+
+The corresponding BibTeX entry is:
+
+@article{Jooken:2021,
+title = {A {N}ew {C}lass of {H}ard {P}roblem {I}nstances for the 0-1 {K}napsack {P}roblem},
+journal = {European Journal of Operational Research},
+year = {2021},
+issn = {0377-2217},
+doi = {https://doi.org/10.1016/j.ejor.2021.12.009},
+url = {https://www.sciencedirect.com/science/article/pii/S037722172101016X},
+author = {Jorik Jooken and Pieter Leyman and Patrick {De Causmaecker}},
+keywords = {Combinatorial optimization, 0-1 knapsack problem, Problem instance hardness},
+abstract = {The 0-1 knapsack problem is an important optimization problem, because it arises as a special case of a wide variety of optimization problems and has been generalized in several ways. Decades of research have resulted in very powerful algorithms that can solve large knapsack problem instances involving thousands of decision variables in a short amount of time. Current problem instances in the literature no longer challenge these algorithms. However, hard problem instances are important to demonstrate the strengths and weaknesses of algorithms and this knowledge can in turn be used to create better performing algorithms. In this paper, we propose a new class of hard problem instances for the 0-1 knapsack problem and provide theoretical support that helps explain why these problem instances are hard to solve to optimality. A large dataset of 3240 hard problem instances was generated and subsequently solved on a supercomputer, using approximately 810 CPU-hours. The analysis of the obtained results shows to which extent different parameters influence the hardness of the problem instances. This analysis also demonstrates that the proposed problem instances are a lot harder than the previously known hardest instances, despite being much smaller.}
+}
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 This repository contains a problem instance generator for the 0-1 knapsack problem
 and a dataset of 3240 problem instances generated using the given generator.
 

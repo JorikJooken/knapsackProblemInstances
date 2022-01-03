@@ -1,13 +1,13 @@
-This repository contains the data described in the paper: "A New Class of Hard Problem Instances for the 0-1 Knapsack Problem". This paper has been accepted for publication in European Journal of Operational Research. The journal issue number will be added as soon as this information is available. Please cite this paper as:
+This repository contains the data described in the paper: "A new class of hard problem instances for the 0-1 knapsack problem". This paper has been accepted for publication in European Journal of Operational Research. The journal issue number will be added as soon as this information is available. Please cite this paper as:
 
-Jooken, J., Leyman, P., & De Causmaecker, P. (2021). A New Class of Hard Problem Instances for the 0-1 Knapsack
-Problem. European Journal of Operational Research, . URL: https://www.sciencedirect.com/science/
+Jooken, J., Leyman, P., & De Causmaecker, P. (2021). A new class of hard problem instances for the 0-1 knapsack
+problem. European Journal of Operational Research, . URL: https://www.sciencedirect.com/science/
 article/pii/S037722172101016X. doi:https://doi.org/10.1016/j.ejor.2021.12.009.
 
 The corresponding BibTeX entry is:
 
 @article{Jooken:2021,
-title = {A {N}ew {C}lass of {H}ard {P}roblem {I}nstances for the 0-1 {K}napsack {P}roblem},
+title = {A new class of hard problem instances for the 0-1 knapsack problem},
 journal = {European Journal of Operational Research},
 year = {2021},
 issn = {0377-2217},

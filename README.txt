@@ -1,7 +1,7 @@
 This repository contains the data described in the paper: "A new class of hard problem instances for the 0-1 knapsack problem". This paper has been published in European Journal of Operational Research. Please cite this paper as:
 
 Jooken, J., Leyman, P., & De Causmaecker, P. (2022). A new class of hard problem instances for the 0–1 knapsack
-problem. European Journal of Operational Research, 301, 841–854.
+problem. European Journal of Operational Research, 301 (3), 841–854.
 
 The corresponding BibTeX entry is:
 

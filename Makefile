@@ -22,10 +22,20 @@ example: ${GENERATOR_EXECUTABLE}
 	@./${GENERATOR_EXECUTABLE} < ${EXAMPLE_INPUT} > ${EXAMPLE_OUTPUT} 2>/dev/null
 
 test: ${GENERATOR_EXECUTABLE}
+	@# success
 	@for N in 1 2 3 ; do \
 		./${GENERATOR_EXECUTABLE} < ${TEST_DIR}/input_$$N.txt > ${TEST_OUTPUT_FILE} 2>${TEST_LOG} ; \
 		diff ${TEST_DIR}/output_$$N.txt ${TEST_OUTPUT_FILE} > /dev/null; \
 		if test $$? -eq 0; then \
+			echo -e "Test $$N \033[32mpassed\033[0;39m"; \
+		else \
+			echo -e "Test $$N \033[31mfailed\033[0;39m"; \
+		fi; \
+	done
+	@# failure
+	@for N in 4 ; do \
+		./${GENERATOR_EXECUTABLE} < ${TEST_DIR}/input_$$N.txt > ${TEST_OUTPUT_FILE} 2>${TEST_LOG} ; \
+		if test $$? -ne 0; then \
 			echo -e "Test $$N \033[32mpassed\033[0;39m"; \
 		else \
 			echo -e "Test $$N \033[31mfailed\033[0;39m"; \

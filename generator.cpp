@@ -1,6 +1,5 @@
-#include <bits/stdc++.h>
-
-using namespace std;
+#include <iostream>
+#include <random>
 
 double eps;
 
@@ -8,29 +7,29 @@ int main()
 {
     #define int long long
 
-    cerr << "n=" << endl;
+    std::cerr << "n=" << std::endl;
     int n;
-    cin >> n;
-    cerr << "capacity=" << endl;
+    std::cin >> n;
+    std::cerr << "capacity=" << std::endl;
     long long cap;
-    cin >> cap;
-    cerr << "classes=" << endl; // >= 2
+    std::cin >> cap;
+    std::cerr << "classes=" << std::endl; // >= 2
     int classes;
-    cin >> classes;
+    std::cin >> classes;
     classes--;
-    cerr << "fraction=" << endl; // 0<=frac<=1, in practice frac should be quite a lot smaller than 1
+    std::cerr << "fraction=" << std::endl; // 0<=frac<=1, in practice frac should be quite a lot smaller than 1
     double frac;
-    cin >> frac;
-    cerr << "eps=" << endl;
+    std::cin >> frac;
+    std::cerr << "eps=" << std::endl;
     double eps;
-    cin >> eps;
-    cerr << "small=" << endl;
+    std::cin >> eps;
+    std::cerr << "small=" << std::endl;
     long long small;
-    cin >> small;
+    std::cin >> small;
 
     std::mt19937 generator(1234);
     std::uniform_int_distribution<int> distribution(1,small);
-    cout << n << endl;
+    std::cout << n << std::endl;
     int amountSmall=n*frac;
     int am1=(n-amountSmall)/classes;
     double denominator=2.0;
@@ -41,7 +40,7 @@ int main()
         {
             int num1=distribution(generator);
             int num2=distribution(generator);
-            cout << amountCtr << " " << (int)((1/denominator+eps)*cap+num1) << " " << (int)((1/denominator+eps)*cap+num2) << endl;
+            std::cout << amountCtr << " " << (int)((1/denominator+eps)*cap+num1) << " " << (int)((1/denominator+eps)*cap+num2) << std::endl;
             amountCtr++;
         }
         denominator*=2;
@@ -50,8 +49,8 @@ int main()
     {
         int num1=distribution(generator);
         int num2=distribution(generator);
-        cout << i << " " << num1 << " " << num2 << endl;
+        std::cout << i << " " << num1 << " " << num2 << std::endl;
     }
-    cout << cap << endl;
+    std::cout << cap << std::endl;
     return 0;
 }

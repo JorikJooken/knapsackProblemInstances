@@ -1,7 +1,7 @@
 .PHONY: test example clean
 
 CXX := g++
-CXX_FLAGS := -std=c++11 -O2
+CXX_FLAGS := -std=c++11 -O2 -Werror -Wall -Wextra -pedantic-errors -fmax-errors=1
 
 GENERATOR_SOURCE := generator.cpp
 GENERATOR_EXECUTABLE := generatorExecutable

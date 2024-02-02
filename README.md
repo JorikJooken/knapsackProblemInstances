@@ -38,13 +38,13 @@ g++ -g -std=c++11 -O2 generator.cpp -o generatorExecutable
 
 When one runs the generator with the command `./generatorExecutable`, it will prompt the user for seven parameters. They are all read from the standard input in the following order:
 
-1. $n \in \Z^*_+$: number of items;
-2. $c \in \Z^*_+$: capacity of the knapsack;
-3. $g \in \Z^*_+$: number of different groups of items;
-4. $f \in \R^*_+, 0 < f \leq 1$: the fraction (at least approximately) of items that belong to the last group;
-5. $\varepsilon \in \R^*_+, 0 < \varepsilon \leq 1$: minimum fraction of the knapsack capacity/weight assigned to the items;
-6. $s \in \Z^*_+$: perturbation in the profits/weights of the items;
-7. $seed \in \Z$: seed for the random number generator;
+1. $n \in \mathbb{Z}^*_+$: number of items;
+2. $c \in \mathbb{Z}^*_+$: capacity of the knapsack;
+3. $g \in \mathbb{Z}^*_+$: number of different groups of items;
+4. $f \in \mathbb{R}^*_+, 0 < f \leq 1$: the fraction (at least approximately) of items that belong to the last group;
+5. $\varepsilon \in \mathbb{R}^*_+, 0 < \varepsilon \leq 1$: minimum fraction of the knapsack capacity/weight assigned to the items;
+6. $s \in \mathbb{Z}^*_+$: perturbation in the profits/weights of the items;
+7. $seed \in \mathbb{Z}$: seed for the random number generator;
 
 The repository also contains a file called [`testInputForGenerator.txt`](./testInputForGenerator.txt), in which the seven parameters are given.
 To generate a problem instance using these parameters, type in a terminal:

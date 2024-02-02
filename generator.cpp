@@ -8,7 +8,8 @@ using Real = double;
 
 constexpr Integer RANDOM_SEED = 1234;
 
-struct Parameter {
+struct Parameter
+{
     Integer n;
     Integer cap;
     Integer classes;
@@ -16,7 +17,8 @@ struct Parameter {
     Real eps;
     Integer small;
 
-    void read() {
+    void read()
+    {
         std::cerr << "n = " << std::endl;
         std::cin >> this->n;
         std::cerr << "capacity = " << std::endl;
@@ -32,28 +34,29 @@ struct Parameter {
         std::cin >> this->small;
     }
 
-    void check() {
-        if(this->n < 1)
+    void check()
+    {
+        if (this->n < 1)
         {
             throw std::invalid_argument("number of items parameter 'n' must be at least 1");
         }
-        if(this->cap < 0)
+        if (this->cap < 0)
         {
             throw std::invalid_argument("capacity paramenter 'c' of the knapsack must be a non-negative integer");
         }
-        if(this->classes < 1) // 1 because the value is decremented just after being read
+        if (this->classes < 1) // 1 because the value is decremented just after being read
         {
             throw std::invalid_argument("classes parameter 'g' must an integer greater or equals 2");
         }
-        if(this->frac < 0 || this->frac > 1)
+        if (this->frac < 0 || this->frac > 1)
         {
             throw std::invalid_argument("fraction parameter 'f' must be a real number between 0 and 1 (inclusive)");
         }
-        if(this->eps < 0 || this->frac > 1)
+        if (this->eps < 0 || this->frac > 1)
         {
             throw std::invalid_argument("'epsilon' parameter must be a real number between 0 and 1 (inclusive)");
         }
-        if(this->small < 0)
+        if (this->small < 0)
         {
             throw std::invalid_argument("paramenter 's' of the knapsack must be a non-negative integer");
         }
@@ -67,27 +70,27 @@ int main()
     parameter.check();
 
     std::mt19937 generator(RANDOM_SEED);
-    std::uniform_int_distribution<Integer> distribution(1,parameter.small);
+    std::uniform_int_distribution<Integer> distribution(1, parameter.small);
     std::cout << parameter.n << std::endl;
-    Integer amountSmall=parameter.n*parameter.frac;
-    Integer am1=(parameter.n-amountSmall)/parameter.classes;
-    double denominator=2.0;
-    Integer amountCtr=0;
-    for(Integer j=0; j<parameter.classes; j++)
+    Integer amountSmall = parameter.n * parameter.frac;
+    Integer am1 = (parameter.n - amountSmall) / parameter.classes;
+    double denominator = 2.0;
+    Integer amountCtr = 0;
+    for (Integer j = 0; j < parameter.classes; j++)
     {
-        for(Integer i=0; i<am1; i++)
+        for (Integer i = 0; i < am1; i++)
         {
-            Integer num1=distribution(generator);
-            Integer num2=distribution(generator);
-            std::cout << amountCtr << " " << (Integer)((1/denominator+parameter.eps)*parameter.cap+num1) << " " << (Integer)((1/denominator+parameter.eps)*parameter.cap+num2) << std::endl;
+            Integer num1 = distribution(generator);
+            Integer num2 = distribution(generator);
+            std::cout << amountCtr << " " << (Integer)((1 / denominator + parameter.eps) * parameter.cap + num1) << " " << (Integer)((1 / denominator + parameter.eps) * parameter.cap + num2) << std::endl;
             amountCtr++;
         }
-        denominator*=2;
+        denominator *= 2;
     }
-    for(Integer i=amountCtr; i<parameter.n; i++)
+    for (Integer i = amountCtr; i < parameter.n; i++)
     {
-        Integer num1=distribution(generator);
-        Integer num2=distribution(generator);
+        Integer num1 = distribution(generator);
+        Integer num2 = distribution(generator);
         std::cout << i << " " << num1 << " " << num2 << std::endl;
     }
     std::cout << parameter.cap << std::endl;

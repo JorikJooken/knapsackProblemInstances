@@ -33,10 +33,16 @@ We assume a Linux working environment. To generate a fresh copy of the executabl
 g++ -g -std=c++11 -O2 generator.cpp -o generatorExecutable
 ```
 
-The generator expects six parameters as input that will be read from the standard input stream.
-The order in which the parameters will be read from the standard input stream is as follows (from first to last): `n, c, g, f, epsilon, s`.
+The generator expects six parameters as input that will be read from the standard input in the following order:
 
-The repository also contains a file called [`testInputForGenerator.txt`](./testInputForGenerator.txt), in which five parameters are given.
+1. $n \in \Z^*_+$: number of items;
+2. $c \in \Z^*_+$: capacity of the knapsack;
+3. $g \in \Z^*_+$: number of different groups of items;
+4. $f \in \R^*_+, 0 < f \leq 1$: the fraction (at least approximately) of items that belong to the last group;
+5. $\varepsilon \in \R^*_+, 0 < \varepsilon \leq 1$: minimum fraction of the knapsack capacity/weight assigned to the items;
+6. $s \in \Z^*_+$: perturbation in the profits/weights of the items;
+
+The repository also contains a file called [`testInputForGenerator.txt`](./testInputForGenerator.txt), in which six parameters are given.
 To generate a problem instance using these parameters, type in a terminal:
 
 ```sh

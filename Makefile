@@ -1,0 +1,18 @@
+.PHONY: test example clean
+
+CXX := g++
+CXX_FLAGS := -std=c++11 -O2
+
+GENERATOR_SOURCE := generator.cpp
+GENERATOR_EXECUTABLE := generatorExecutable
+
+EXAMPLE_INPUT := testInputForGenerator.txt
+EXAMPLE_OUTPUT := toyProblemInstance.txt
+
+all: ${GENERATOR_EXECUTABLE}
+
+${GENERATOR_EXECUTABLE}: ${GENERATOR_SOURCE}
+	@$(CXX) $(CXX_FLAGS) -o ${GENERATOR_EXECUTABLE} ${GENERATOR_SOURCE}
+
+example: ${GENERATOR_EXECUTABLE}
+	@./${GENERATOR_EXECUTABLE} < ${EXAMPLE_INPUT} > ${EXAMPLE_OUTPUT} 2>/dev/null

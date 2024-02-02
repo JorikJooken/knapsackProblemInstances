@@ -2,6 +2,7 @@
 #include <random>
 #include <cstdint>
 #include <stdexcept>
+#include <vector>
 
 using Integer = std::int64_t;
 using Real = double;
@@ -16,6 +17,7 @@ struct Parameter
     Real frac;
     Real eps;
     Integer small;
+    Real b = 2.0;
 
     void read()
     {
@@ -63,36 +65,112 @@ struct Parameter
     }
 };
 
+class Item
+{
+public:
+    Item(const Integer identifier, const Integer profit, const Integer weight)
+        : identifier(identifier), profit(profit), weight(weight) {}
+
+    void print() const
+    {
+        std::cout << identifier << " " << profit << " " << weight << std::endl;
+    }
+
+private:
+    Integer identifier;
+    Integer profit;
+    Integer weight;
+};
+
+struct Instance
+{
+    Parameter parameter;
+    Integer number_of_small_items;
+    Integer number_of_items_in_a_group;
+    std::vector<Item> items;
+
+    Instance(const Parameter parameter)
+        : parameter(parameter)
+    {
+        Integer approximate_number_of_small_items = parameter.n * parameter.frac;
+        this->number_of_items_in_a_group = (parameter.n - approximate_number_of_small_items) / parameter.classes;
+        const Integer number_of_large_items = parameter.classes * this->number_of_items_in_a_group;
+        this->number_of_small_items = parameter.n - number_of_large_items;
+    }
+
+    void add_large_item(const Real denominator, const Integer r1, const Integer r2, const Parameter &parameter)
+    {
+        const Integer identifier = this->items.size();
+        const Integer profit = ((1 / denominator) + parameter.eps) * parameter.cap + r1;
+        const Integer weight = ((1 / denominator) + parameter.eps) * parameter.cap + r2;
+        items.push_back(Item(identifier, profit, weight));
+    }
+
+    void add_small_item(const Integer r1, const Integer r2)
+    {
+        items.push_back(Item(this->items.size(), r1, r2));
+    }
+
+    void print() const
+    {
+        std::cout << parameter.n << std::endl;
+        for (const Item &item : this->items)
+        {
+            item.print();
+        }
+        std::cout << parameter.cap << std::endl;
+    }
+};
+
+class Random
+{
+public:
+    Random(const Parameter &parameter)
+        : generator(RANDOM_SEED), distribution(1, parameter.small) {}
+
+    Integer get()
+    {
+        return distribution(generator);
+    }
+
+private:
+    std::mt19937 generator;
+    std::uniform_int_distribution<Integer> distribution;
+};
+
 int main()
 {
     Parameter parameter;
     parameter.read();
     parameter.check();
 
-    std::mt19937 generator(RANDOM_SEED);
-    std::uniform_int_distribution<Integer> distribution(1, parameter.small);
-    std::cout << parameter.n << std::endl;
-    Integer amountSmall = parameter.n * parameter.frac;
-    Integer am1 = (parameter.n - amountSmall) / parameter.classes;
-    double denominator = 2.0;
-    Integer amountCtr = 0;
-    for (Integer j = 0; j < parameter.classes; j++)
+    Random random(parameter);
+
+    Instance instance(parameter);
+
+    // generate large items
+    Real denominator = parameter.b;
+    for (Integer group_counter = 0; group_counter < parameter.classes; group_counter++)
     {
-        for (Integer i = 0; i < am1; i++)
+        for (Integer item_counter = 0; item_counter < instance.number_of_items_in_a_group; item_counter++)
         {
-            Integer num1 = distribution(generator);
-            Integer num2 = distribution(generator);
-            std::cout << amountCtr << " " << (Integer)((1 / denominator + parameter.eps) * parameter.cap + num1) << " " << (Integer)((1 / denominator + parameter.eps) * parameter.cap + num2) << std::endl;
-            amountCtr++;
+            Integer r1j = random.get();
+            Integer r2j = random.get();
+            instance.add_large_item(denominator, r1j, r2j, parameter);
         }
-        denominator *= 2;
+        denominator *= parameter.b;
     }
-    for (Integer i = amountCtr; i < parameter.n; i++)
+
+    // generate small items
+    for (Integer item_counter = 0; item_counter < instance.number_of_small_items; item_counter++)
     {
-        Integer num1 = distribution(generator);
-        Integer num2 = distribution(generator);
-        std::cout << i << " " << num1 << " " << num2 << std::endl;
+        Integer r1j = random.get();
+        Integer r2j = random.get();
+        instance.add_small_item(r1j, r2j);
     }
-    std::cout << parameter.cap << std::endl;
+
+    // print instance to standard output
+    instance.print();
+
     return 0;
 }

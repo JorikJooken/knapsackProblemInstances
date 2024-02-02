@@ -1,8 +1,6 @@
 #include <iostream>
 #include <random>
 
-double eps;
-
 int main()
 {
     #define int long long

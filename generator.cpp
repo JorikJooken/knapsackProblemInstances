@@ -7,8 +7,6 @@
 using Integer = std::int64_t;
 using Real = double;
 
-constexpr Integer RANDOM_SEED = 1234;
-
 struct Parameter
 {
     Integer n;
@@ -18,6 +16,7 @@ struct Parameter
     Real eps;
     Integer small;
     Real b = 2.0;
+    Integer seed = 1234;
 
     void read()
     {
@@ -34,6 +33,12 @@ struct Parameter
         std::cin >> this->eps;
         std::cerr << "small = " << std::endl;
         std::cin >> this->small;
+        if (!std::cin.eof())
+        {
+            // get random seed if available
+            std::cerr << "seed = " << std::endl;
+            std::cin >> this->seed;
+        }
     }
 
     void check()
@@ -126,7 +131,7 @@ class Random
 {
 public:
     Random(const Parameter &parameter)
-        : generator(RANDOM_SEED), distribution(1, parameter.small) {}
+        : generator(parameter.seed), distribution(1, parameter.small) {}
 
     Integer get()
     {

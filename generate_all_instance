@@ -1,0 +1,24 @@
+#!/bin/sh
+
+PROBLEM_INSTANCES_DIR="problemInstances"
+
+generate_instance () {
+    echo -e "Generating instance with parameters: n=$1, c=$2, g=$3, f=$4, eps=$5, s=$6"
+    PROBLEM_DIR_NAME="${PROBLEM_INSTANCES_DIR}/n_${1}_c_${2}_g_${3}_f_${4}_eps_${5}_s_${6}"
+    INSTANCE_FILE="${PROBLEM_DIR_NAME}/test.in"
+    echo "$@" | ./generatorExecutable > "${INSTANCE_FILE}" 2> /dev/null
+}
+
+for n in 400 600 800 1000 1200; do
+    for c in 1000000 100000000 10000000000; do
+        for g in 2 6 10 14; do
+            for f in 0.1 0.2 0.3; do
+                for eps in 0 1e-05 0.0001 0.001 0.01 0.1; do
+                    for s in 100 200 300; do
+                        generate_instance $n $c $g $f $eps $s
+                    done
+                done
+            done
+        done
+    done
+done

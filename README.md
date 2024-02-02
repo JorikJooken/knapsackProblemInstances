@@ -27,13 +27,16 @@ The corresponding BibTeX entry is:
 ## Generator
 
 The generator source code is given in [`generator.cpp`](./generator.cpp) and its executable is called [generatorExecutable](./generatorExecutable).
+One can compile run everyhing using the provided Makefile, but for the sake of completeness, we also provide the equivalent commands.
 We assume a Linux working environment. To generate a fresh copy of the executable, the source code needs to be recompiled with:
 
 ```sh
+make --always-make
+# or
 g++ -g -std=c++11 -O2 generator.cpp -o generatorExecutable
 ```
 
-The generator expects six mandatory parameters and one optinal as input. They are all read from the standard input in the following order:
+When one runs generator with the command `./generatorExecutable`, it will prompt the user for seven parameters. They are all read from the standard input in the following order:
 
 1. $n \in \Z^*_+$: number of items;
 2. $c \in \Z^*_+$: capacity of the knapsack;
@@ -41,14 +44,19 @@ The generator expects six mandatory parameters and one optinal as input. They ar
 4. $f \in \R^*_+, 0 < f \leq 1$: the fraction (at least approximately) of items that belong to the last group;
 5. $\varepsilon \in \R^*_+, 0 < \varepsilon \leq 1$: minimum fraction of the knapsack capacity/weight assigned to the items;
 6. $s \in \Z^*_+$: perturbation in the profits/weights of the items;
-7. $seed \in \Z$: seed for the random number generator. This is optional, and if not provided, a default value will be used;
+7. $seed \in \Z$: seed for the random number generator;
 
-The repository also contains a file called [`testInputForGenerator.txt`](./testInputForGenerator.txt), in which seven parameters are given.
+The repository also contains a file called [`testInputForGenerator.txt`](./testInputForGenerator.txt), in which the seven parameters are given.
 To generate a problem instance using these parameters, type in a terminal:
 
 ```sh
+make example
+# or
 ./generatorExecutable < testInputForGenerator.txt > toyProblemInstance.txt
+
 ```
+
+That will generate the file [`toyProblemInstance.txt`](./toyProblemInstance.txt) in the current directory.
 
 ## Problem Instances
 

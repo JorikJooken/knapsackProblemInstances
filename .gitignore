@@ -1,6 +1,3 @@
-# temporary
-temp/
-
 # c++
 build/
 .cache/
@@ -17,3 +14,4 @@ venv
 
 # others
 *.log*
+toyProblemInstance.txt

@@ -16,7 +16,7 @@ struct Parameter
     Real eps;
     Integer small;
     Real b = 2.0;
-    Integer seed = 1234;
+    Integer seed;
 
     void read()
     {
@@ -33,12 +33,8 @@ struct Parameter
         std::cin >> this->eps;
         std::cerr << "small = " << std::endl;
         std::cin >> this->small;
-        if (!std::cin.eof())
-        {
-            // get random seed if available
-            std::cerr << "seed = " << std::endl;
-            std::cin >> this->seed;
-        }
+        std::cerr << "seed = " << std::endl;
+        std::cin >> this->seed;
     }
 
     void check()

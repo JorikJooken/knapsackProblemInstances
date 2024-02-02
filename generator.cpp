@@ -17,7 +17,7 @@ int main()
     cerr << "classes=" << endl; // >= 2
     int classes;
     cin >> classes;
-    classes--;  
+    classes--;
     cerr << "fraction=" << endl; // 0<=frac<=1, in practice frac should be quite a lot smaller than 1
     double frac;
     cin >> frac;
@@ -28,8 +28,7 @@ int main()
     long long small;
     cin >> small;
 
-    std::random_device device;
-    std::mt19937 generator(device());
+    std::mt19937 generator(1234);
     std::uniform_int_distribution<int> distribution(1,small);
     cout << n << endl;
     int amountSmall=n*frac;

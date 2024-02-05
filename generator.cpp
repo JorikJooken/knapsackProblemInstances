@@ -141,37 +141,44 @@ private:
 
 int main()
 {
-    Parameter parameter;
-    parameter.read();
-    parameter.check();
-
-    Random random(parameter);
-
-    Instance instance(parameter);
-
-    // generate large items
-    Real denominator = parameter.b;
-    for (Integer group_counter = 0; group_counter < parameter.classes; group_counter++)
+    try
     {
-        for (Integer item_counter = 0; item_counter < instance.number_of_items_in_a_group; item_counter++)
+        Parameter parameter;
+        parameter.read();
+        parameter.check();
+
+        Random random(parameter);
+
+        Instance instance(parameter);
+
+        // generate large items
+        Real denominator = parameter.b;
+        for (Integer group_counter = 0; group_counter < parameter.classes; group_counter++)
+        {
+            for (Integer item_counter = 0; item_counter < instance.number_of_items_in_a_group; item_counter++)
+            {
+                Integer r1j = random.get();
+                Integer r2j = random.get();
+                instance.add_large_item(denominator, r1j, r2j, parameter);
+            }
+            denominator *= parameter.b;
+        }
+
+        // generate small items
+        for (Integer item_counter = 0; item_counter < instance.number_of_small_items; item_counter++)
         {
             Integer r1j = random.get();
             Integer r2j = random.get();
-            instance.add_large_item(denominator, r1j, r2j, parameter);
+            instance.add_small_item(r1j, r2j);
         }
-        denominator *= parameter.b;
-    }
 
-    // generate small items
-    for (Integer item_counter = 0; item_counter < instance.number_of_small_items; item_counter++)
+        // print instance to standard output
+        instance.print();
+
+        return 0;
+    } catch (const std::exception &e)
     {
-        Integer r1j = random.get();
-        Integer r2j = random.get();
-        instance.add_small_item(r1j, r2j);
+        std::cerr << "Error: " << e.what() << std::endl;
+        return 1;
     }
-
-    // print instance to standard output
-    instance.print();
-
-    return 0;
 }

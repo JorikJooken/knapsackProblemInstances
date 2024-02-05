@@ -1,0 +1,17 @@
+# c++
+build/
+.cache/
+
+# vim
+*.swp
+*.swo
+
+# vscode
+.vscode/*
+
+# python
+venv
+
+# others
+*.log*
+toyProblemInstance.txt
